@@ -15,7 +15,7 @@
 		http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!-- Paquete de escaneo de componentes -->
-	<context:component-scan base-package="co.camcar.controlador" />
+	<context:component-scan base-package="co.camcar" />
 
 	<!-- Conversión formateo y validación-->
 	<mvc:annotation-driven/>
@@ -55,7 +55,7 @@
    </bean>	  
 
     <!--  Configuración Hibernate transaction manager -->
-	<bean id="miTransactionManager"
+	<bean id="transactionManager"
             class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
