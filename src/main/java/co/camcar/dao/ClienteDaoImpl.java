@@ -29,4 +29,14 @@ public class ClienteDaoImpl implements ClienteDao{
 		return clientes;
 	}
 
+	@Override
+	@Transactional
+	public void insertarCliente(Cliente cliente) {
+		//Obtener la sesión
+		Session session = sessionFactory.getCurrentSession();
+		//insertar cliente en bbdd
+		session.save(cliente);
+		
+	}
+
 }

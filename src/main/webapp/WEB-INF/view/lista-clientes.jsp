@@ -9,20 +9,28 @@
 		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/estilos.css "/>
 	</head>
 	<body>
-		Hemos llegado a la lista de futuros clientes!!!
-		<table>
+		<h1>Lista de clientes</h1>
+		<table border="1">
 			<tr>
-				<th>nombre</th>
-				<th>apellido</th>
-				<th>email</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Email</th>
+				
+				<th>Editar</th>
 			</tr>
-			<c:forEach var="cliente" items="${clientes}">	
+			<c:forEach var="cliente" items="${clientes}">
+				<c:url var="linkActualizar" value="/cliente/formularioActualizar">
+					<c:param name="clienteId" value="${cliente.id}"/>
+				</c:url>	
 				<tr>
-					<th>${cliente.nombre}</th>
-					<th>${cliente.apellido}</th>
-					<th>${cliente.email}</th>
+					<td>${cliente.nombre}</td>
+					<td>${cliente.apellido}</td>
+					<td>${cliente.email}</td>
+					<td><a href="${linkActualizar}"><input type="button" value="Editar"/></a></td>
 				</tr>
 			</c:forEach>
 		</table>
+		<br/>
+		<input type="button" value="Agregar Cliente" onclick="window.location.href='formularioAgregar'; return false;"/>
 	</body>
 </html>
