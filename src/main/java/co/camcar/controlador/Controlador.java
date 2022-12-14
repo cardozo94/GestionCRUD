@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import co.camcar.controlador.entity.Cliente;
 import co.camcar.dao.ClienteDao;
@@ -44,5 +46,14 @@ public class Controlador {
 		clienteDao.insertarCliente(cliente);
 		
 		return "redirect:/cliente/lista";
+	}
+	
+	@GetMapping("/formularioActualizar")
+	public String muestraFormularioActualizar(@RequestParam("clienteId") int id, Model modelo) {
+		//obtener cliente
+		Cliente cliente  = clienteDao.getCliente(id);
+		//bind datos clientes
+		modelo.addAttribute("cliente", cliente);
+		return "formulario-cliente";
 	}
 }

@@ -39,4 +39,12 @@ public class ClienteDaoImpl implements ClienteDao{
 		
 	}
 
+	@Override
+	@Transactional
+	public Cliente getCliente(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Cliente cliente = session.get(Cliente.class, id);
+		return cliente;
+	}
+
 }
