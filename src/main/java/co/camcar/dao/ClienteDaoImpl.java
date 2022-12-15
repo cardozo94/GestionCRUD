@@ -35,7 +35,8 @@ public class ClienteDaoImpl implements ClienteDao{
 		//Obtener la sesión
 		Session session = sessionFactory.getCurrentSession();
 		//insertar cliente en bbdd
-		session.save(cliente);
+		//session.save(cliente); insert
+		session.saveOrUpdate(cliente);//insert and update
 		
 	}
 
@@ -45,6 +46,16 @@ public class ClienteDaoImpl implements ClienteDao{
 		Session session = sessionFactory.getCurrentSession();
 		Cliente cliente = session.get(Cliente.class, id);
 		return cliente;
+	}
+
+	@Override
+	@Transactional
+	public void eliminarCliente(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		//session.delete(id);
+		Query consulta = session.createQuery("delete from Cliente where id=:clienteId");
+		consulta.setParameter("clienteId", id);
+		consulta.executeUpdate();
 	}
 
 }

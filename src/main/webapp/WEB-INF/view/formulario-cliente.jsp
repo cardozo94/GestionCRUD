@@ -11,6 +11,7 @@
 	<body>
 		<h1>Inserte los datos del cliente</h1>
 		<form:form action="insertarCliente" modelAttribute="cliente" method="POST">
+			<form:hidden path="id"/>
 			<table>
 				<tr>
 					<td>Nombre: </td>

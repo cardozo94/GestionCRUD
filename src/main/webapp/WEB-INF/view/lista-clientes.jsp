@@ -15,11 +15,18 @@
 				<th>Nombre</th>
 				<th>Apellido</th>
 				<th>Email</th>
-				
+			
 				<th>Editar</th>
+				
+				<th>Eliminar</th>
 			</tr>
 			<c:forEach var="cliente" items="${clientes}">
+				<!-- link para actualizar -->
 				<c:url var="linkActualizar" value="/cliente/formularioActualizar">
+					<c:param name="clienteId" value="${cliente.id}"/>
+				</c:url>
+					<!-- link para eliminar -->
+				<c:url var="linkEliminar" value="/cliente/eliminar">
 					<c:param name="clienteId" value="${cliente.id}"/>
 				</c:url>	
 				<tr>
@@ -27,6 +34,11 @@
 					<td>${cliente.apellido}</td>
 					<td>${cliente.email}</td>
 					<td><a href="${linkActualizar}"><input type="button" value="Editar"/></a></td>
+					<td>
+						<a href="${linkEliminar}">
+							<input type="button" value="Eliminar" onclick="if(!(confirm('¿Desea eliminar el ciente?'))) return false"/>
+						</a>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
